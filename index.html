@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Winterloom</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Agentic software for esoteric niches with an asymmetric edge.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=VT323&display=swap">
+<style>
+/* Layout: one terminal session on a cold phosphor screen, set left in a narrow column. Nothing else on the page. */
+:root {
+  --glass: #05080b;      /* powered-off tube */
+  --phos: #cfe8f2;       /* cold white phosphor */
+  --dim: #5f7a86;        /* prompt and comments */
+  --frost: #8fd3ea;      /* the one accent */
+  --mono: "VT323", "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: radial-gradient(ellipse 90% 80% at 50% 45%, #0b1218 0%, var(--glass) 75%) var(--glass);
+  color: var(--phos);
+  font: 400 clamp(19px, 2.2vw, 24px)/1.35 var(--mono);
+  text-shadow: 0 0 2px color-mix(in srgb, var(--phos) 60%, transparent), 0 0 10px color-mix(in srgb, var(--frost) 18%, transparent);
+}
+.screen {
+  min-height: 100%;
+  box-sizing: border-box;
+  display: grid;
+  align-content: center;
+  padding-block: 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.screen::after { /* scanlines, barely there */
+  content: ""; position: fixed; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0,0,0,.28) 0 1px, transparent 1px 3px);
+  animation: hum 8s steps(1) infinite;
+}
+.session { width: min(100%, 58ch); margin-inline: auto; display: grid; gap: 1.1em; min-width: 0; }
+.session p { margin: 0; overflow-wrap: anywhere; }
+.boot { color: var(--dim); }
+.p { color: var(--dim); }
+.p::before { content: "~ $ "; }
+h1 {
+  margin: 0; font: inherit; font-size: clamp(56px, 11vw, 112px); line-height: .9; letter-spacing: .02em;
+  color: var(--phos);
+  text-shadow: 0 0 3px var(--phos), 0 0 18px color-mix(in srgb, var(--frost) 35%, transparent);
+}
+a { color: var(--frost); text-decoration: none; border-bottom: 1px dashed color-mix(in srgb, var(--frost) 60%, transparent); user-select: all; }
+a:hover { border-bottom-style: solid; }
+a:focus-visible { outline: 1px solid var(--frost); outline-offset: 3px; }
+.cursor { display: inline-block; width: .55em; height: 1em; vertical-align: -.12em; background: var(--phos); box-shadow: 0 0 8px color-mix(in srgb, var(--frost) 50%, transparent); animation: blink 1.06s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@keyframes hum { 0%, 96%, 100% { opacity: 1; } 97% { opacity: .7; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; } }
+</style>
+</head>
+<body>
+
+<div class="screen">
+  <div class="session">
+    <p class="boot">wl-os 0.1 · tty1 · 06 nov 2026 · cold boot ok</p>
+    <div>
+      <p class="p">whoami</p>
+      <h1>winterloom</h1>
+    </div>
+    <div>
+      <p class="p">cat mission</p>
+      <p>agentic software for esoteric niches with an asymmetric edge.</p>
+    </div>
+    <div>
+      <p class="p">contact</p>
+      <p><a href="mailto:hello@winterloom.io">hello@winterloom.io</a></p>
+    </div>
+    <p class="p"><span class="cursor" aria-hidden="true"></span></p>
+  </div>
+</div>
+</body>
+</html>
