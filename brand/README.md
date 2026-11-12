@@ -6,7 +6,7 @@ Winterloom builds agentic software for esoteric niches with an asymmetric edge. 
 - Present content as a terminal session. A command in `dim` after the prompt `~ $ `, then its output in `phosphor`:
   - `~ $ whoami` → `winterloom`
   - `~ $ cat mission` → `agentic software for esoteric niches with an asymmetric edge.`
-  - `~ $ contact` → `hello@winterloom.io`
+  - `~ $ contact` → `hello@winterloom.ai`
 - Commands are short real-looking shell words (`whoami`, `cat`, `ls`, `man`, `status`). Avoid jokes that break the fiction, such as fake error codes or hacker slang.
 - Boot and status lines use `·` as a separator and read like system output: `wl-os 0.1 · tty1 · 06 nov 2026 · cold boot ok`.
 - No emoji, no exclamation marks, no marketing superlatives. Say what the thing does in one plain line.
