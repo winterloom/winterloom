@@ -6,4 +6,4 @@ Landing page for winterloom: agentic software for esoteric niches with an asymme
 - `favicon.svg` is the brand app icon.
 - `brand/` holds the identity: `README.md` (guidelines), `tokens.json` / `tokens.css`, outlined logo SVGs in `brand/logos/`, the VT323 font, and `brand/source/gen_logos.py`, which outlines new wordmarks and product lockups (`winterloom/<product>`).
 
-The site is served at https://winterloom.ai (see `CNAME`). The contact address `hello@winterloom.ai` is a placeholder until a real mailbox exists.
+The site is served at https://winterloom.ai (see `CNAME`). The contact address on the page is `elijah@winterloom.ai`.
