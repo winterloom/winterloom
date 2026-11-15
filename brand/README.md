@@ -61,4 +61,50 @@ python3 source/gen_logos.py fonts/VT323-Regular.woff2 out "winterloom/oracle" "w
 ## Iconography and imagery
 
 - No icon set. Use VT323 characters as icons: `>` for go, `~` for home, `/` for paths, `·` as a separator, `█` for the cursor.
-- No photography or illustration. When an image is unavoidable, show a screen: text on `glass` with scanlines.
+- No photography or illustration. When an image is unavoidable, show a screen: text on `glass` with scanlines, or one of the blackwork patterns below.
+
+## Pattern: op-art blackwork
+
+The brand's one image language, for notes, covers, dividers and the backs of things. It borrows from geometric blackwork tattooing (heavy solid ink, echoed contour lines, grids pulled into depth, a sacred-geometry focal point, dotwork shading) and puts it through a one-bit terminal: every pattern is a bitmap on the dot grid where each dot is either ink or ground.
+
+### The rules
+
+- **One bit.** Ink is `phosphor` on `glass` in either theme: `#cfe8f2` on `#05080b` (on-dark) or `#0d1a20` on `#eef2f3` (on-light). No greys, no gradients, no anti-aliasing, no `frost`. Render with `shape-rendering: crispEdges` or `image-rendering: pixelated`.
+- **Tone comes from spacing.** Shade by changing the gap between lines or with ordered (Bayer) dither. Never use opacity or a tint to make something lighter.
+- **Echo the contour.** A shape is drawn by its contour repeated outward at an even pitch (2 to 3 dots ink, the same in ground). Where two echo fields meet, let them fold into chevrons.
+- **Warp the grid.** Grids may bulge, pinch or fan, but lines stay continuous and the cell count stays readable.
+- **One quiet thing.** Every busy pattern holds at most one still point: the eye, a lattice diamond or a single orb, set on a plate of clear ground at least 3 dots wide. Never two.
+- **The eye** is a vesica almond (two circles) with a solid pupil and a single 1-dot highlight notch. It is the brand's watching eye and the only figurative motif. No faces, bodies, hands or creatures.
+- **Square and on grid.** Patterns are square tiles of 128 dots or bands 16 dots tall. Scale only by whole multiples (8× gives 1024px), so dots stay square.
+- **Patterns never touch type.** Keep a clear-space margin of 2 character cells between any pattern and text or a logo, and never set text over a pattern. A logo may sit on the eye plate of `field` only.
+- **Screen effects stay off.** Glow and scanlines belong to text. Patterns are flat.
+
+### Where it goes
+
+- Notes and docs: one `rule` band as a section divider, or one tile as a cover image. One pattern per page.
+- Screens: a tile as the background of an empty state or a loading screen, behind nothing.
+- Never in the logo, the app icon, the favicon or body text areas.
+
+### The set (`patterns/`)
+
+Each comes as `<name>-on-dark.svg` and `<name>-on-light.svg`, with 1024px PNGs (8× nearest-neighbour) in `patterns/png/`. Contact sheets: `patterns/png/sheet-on-dark.png` and `sheet-on-light.png`.
+
+| name | what it is | use |
+| --- | --- | --- |
+| `contour` | echoed contour bands around three seeds, folding into chevrons where they meet | busy ground, covers |
+| `warp` | a square grid pulled into a lens | covers, technical notes |
+| `rays` | rays fanning from a lattice diamond | title cards, the start of a long doc |
+| `eye` | the watching eye, echoed outward in vesica bands | the quiet ornament on its own; small sizes |
+| `dotwork` | a dithered orb and ring, shaded only by stipple | empty states, research notes |
+| `field` | the composition rule in one tile: busy echoes around one eye on a clear plate | hero image, back covers |
+| `rule` | an echoed zigzag band, 256 × 16 dots | section dividers in notes |
+
+### Generating new patterns
+
+`source/gen_patterns.py` builds each pattern from distance fields (bands of distance for echoes, a smooth minimum for chevrons, a radial warp for lenses, Bayer dither for dotwork) and writes both themes as SVG and PNG. Add a function to `PATTERNS` to make a new one.
+
+```
+pip install numpy pillow
+python3 source/gen_patterns.py patterns 8
+```
+
